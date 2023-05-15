@@ -1,5 +1,5 @@
 // MARK: Remove Duplicate
-
+// ************************** 1st Logic ******************************
 func deleteDuplicates(_ head: ListNode?) -> ListNode? {
         var current = head
         var last: ListNode?
@@ -14,3 +14,19 @@ func deleteDuplicates(_ head: ListNode?) -> ListNode? {
         }
         return head
     }
+
+// ************************** 2nd Logic ****************************
+
+func deleteDuplicates(_ head: ListNode?) -> ListNode? {
+       var curt : ListNode? = head
+        while(curt != nil) {
+            var temp = curt?.next
+            while(temp != nil && curt?.val == temp?.val) {
+                temp = temp?.next
+            }
+            curt?.next = temp
+            curt = temp
+        }
+        return head
+    }
+}
