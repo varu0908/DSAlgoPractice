@@ -30,4 +30,4 @@ func removeDuplicateElement(_ nums: inout [Int]) -> Int{
 }
 removeDuplicateElement(&num)
 
-// O/P -> [0, 3, 1, 4]
+// O/P -> [0,2,3,1,4]
