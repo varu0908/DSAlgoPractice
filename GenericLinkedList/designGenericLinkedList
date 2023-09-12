@@ -1,0 +1,88 @@
+class Node <T> {
+    var data : T
+    var next : Node<T>?
+    
+    init(data : T) {
+        self.data = data
+        self.next = nil
+    }
+}
+
+class LinkList<T> {
+    var head : Node<T>?
+    var tail : Node<T>?
+    
+    func append(val: T) -> Node<T>? {
+        var newNode = Node<T>(data: val)
+        if head == nil {
+            head = newNode
+            tail = newNode
+        } else {
+            tail?.next = newNode
+            tail = newNode
+        }
+        return head
+    }
+    
+    func reverseLinkList() {
+        var curt : Node<T>? = head
+        var prev : Node<T>? = nil
+        
+        while(curt != nil) {
+            var sec = curt!.next
+            curt!.next = prev
+            prev = curt
+            curt = sec
+        }
+        tail = head
+        head = prev
+    }
+    
+    func removeFirst() {
+        var temp = head
+        head = head?.next
+        temp?.next = nil
+    }
+    
+    func removeLast() {
+        var temp = head
+        while(temp?.next !== tail){
+            temp = temp?.next
+        }
+        temp?.next = nil
+        tail = temp
+    }
+    
+    func addAtHead(val: T) {
+        var newNode = Node(data: val)
+        newNode.next = head
+        head = newNode
+    }
+    
+    func addAtTail(val : T) {
+        var newNode = Node(data: val)
+        tail?.next = newNode
+        newNode.next = nil
+        tail = newNode
+    }
+    
+    func printLinkList() {
+        var temp = head
+        while(temp != nil) {
+            print(temp?.data ?? "", terminator: " -> ")
+            temp = temp?.next
+        }
+    }
+}
+
+var ll = LinkList<Any>()
+ll.append(val: "5")
+ll.append(val: "6")
+ll.append(val: 7)
+ll.append(val: "8")
+ll.addAtHead(val: 1)
+//ll.reverseLinkList()
+//ll.removeFirst()
+//ll.removeLast()
+ll.addAtTail(val: 0)
+ll.printLinkList()
